@@ -1,7 +1,7 @@
 -module(temperature_converter).
 -author("Andrew Ho").
--export([ConvertToCelsius/1]).
--export([ConvertToFahrenheit/1]).
+%	-export([ConvertToCelsius/2]).
+%	-export([ConvertToFahrenheit/2]).
 -export([loop/0]).
 
 loop() -> receive
@@ -15,16 +15,16 @@ loop() -> receive
 		loop();
 	{_,X} ->
 		Wrong = spawn(fun display:loop/0),
-		Wrong ! {"Error","Error"}
+		Wrong ! {"Error",X},
 		loop()
 	end.
 		
 		
-ConvertToCelsius(Fahrenheit) ->
-	{"ConvertToCelsius",Fahrenheit}.
+%	ConvertToCelsius(Fahrenheit) ->
+%		{"ConvertToCelsius",Fahrenheit}.
 		
 		
-ConvertToFahrenheit(Celsius) ->
-	{"ConvertToFahrenheit",Celsius}.
+%	ConvertToFahrenheit(Celsius) ->
+%		{"ConvertToFahrenheit",Celsius}.
 
 

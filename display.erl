@@ -1,19 +1,19 @@
 -module(display).
 -author("Andrew Ho").
--export([Temperature/2]).
+%	-export([Temperature/2]).
 -export([loop/0]).
 
 
 loop() -> receive
-	{"Error","Error"} ->
+	{"Error",_} ->
 		io:format("The conversion you requested was not recognised! ~n"),
 		loop();
-	{_,_} ->
-		io:format("~p The temperature in Celsius is: ~p~n" [Celsius]),
-		io:format("~p The temperature in Fahrenheit is: ~p~n" [Fahrenheit])
+	{Celsius,Fahrenheit} ->
+		io:format("The temperature in Celsius is ~s!",[Celsius]),
+		io:format("The temperature in Fahrenheit is ~s!",[Fahrenheit])
 	end.
 
 
-Temperature(Celsius,Fahrenheit) ->
-	{Celsius,Fahrenheit}.
+%	Temperature(Celsius,Fahrenheit) ->
+%		{Celsius,Fahrenheit}.
 	
