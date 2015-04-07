@@ -5,14 +5,13 @@
 
 
 loop() -> receive
-	{"Error",_} ->
-		io:format("The conversion you requested was not recognised! ~n"),
-		loop();
 	{Celsius,Fahrenheit} ->
-		io:format("The temperature in Celsius is ~s!",[Celsius]),
-		io:format("The temperature in Fahrenheit is ~s!",[Fahrenheit])
+		C = erlang:float_to_list(Celsius),
+		F = erlang:float_to_list(Fahrenheit),
+		io:format("The temperature in Celsius is ~s!",[C]),
+		io:format("The temperature in Fahrenheit is ~s!",[F]),
+		loop()
 	end.
-
 
 %	Temperature(Celsius,Fahrenheit) ->
 %		{Celsius,Fahrenheit}.

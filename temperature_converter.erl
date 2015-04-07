@@ -7,15 +7,16 @@
 loop() -> receive
 	{"ConvertToCelsius",X} ->
 		F2C = spawn(fun display:loop/0),
-		F2C ! {(X - 32) * 5/9,X},
+		Celsius = (X - 32) * 5/9,
+		F2C ! {Celsius,X},
 		loop();
 	{"ConvertToFahrenheit",X} ->
 		C2F = spawn(fun display:loop/0),
-		C2F ! {X,(X * 9/5) + 32},
+		Fahrenheit = (X * 9/5) + 32,
+		C2F ! {X,Fahrenheit},
 		loop();
 	{_,X} ->
-		Wrong = spawn(fun display:loop/0),
-		Wrong ! {"Error",X},
+		io:format("The conversion you requested for ~s was not recognised! ~n",[X]),
 		loop()
 	end.
 		
