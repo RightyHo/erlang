@@ -1,0 +1,3 @@
+-module(display).
+-author("Andrew Ho").
+-export([loop/0]).
