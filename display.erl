@@ -1,3 +1,6 @@
 -module(display).
 -author("Andrew Ho").
--export([loop/0]).
+-export([Temperature/2]).
+
+Temperature(float,float) ->
+	
